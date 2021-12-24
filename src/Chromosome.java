@@ -3,44 +3,42 @@ import java.util.Random;
 public class Chromosome {
 
 
+    private float x;
+    private float y;
 
-    private double x;
-    private double y;
-
-    private double fitness;
+    private float fitness;
 
 
     public void generateRandomChromosome() {
-        Random random=new Random();
+        Random random = new Random();
 
-        this.x=(int)(random.nextDouble()*30);
-        this.y=(int)(random.nextDouble()*30);
+        this.x = (float) (Math.round((random.nextFloat() * 60 - 30)*1000d)/1000d);
+        this.y = (float) (Math.round((random.nextFloat() * 60 - 30)*1000d)/1000d);
 
     }
 
 
-
-    public double getX() {
+    public float getX() {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(float x) {
         this.x = x;
     }
 
-    public double getY() {
+    public float getY() {
         return y;
     }
 
-    public void setY(double y) {
+    public void setY(float y) {
         this.y = y;
     }
 
-    public double getFitness() {
+    public float getFitness() {
         return fitness;
     }
 
-    public void setFitness(double fitness) {
+    public void setFitness(float fitness) {
         this.fitness = fitness;
     }
 }
