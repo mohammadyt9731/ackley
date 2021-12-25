@@ -17,6 +17,9 @@ public class Program {
 
     public static void main(String[] args) {
 
+        long startTime = System.currentTimeMillis();
+
+
         ArrayList<Chromosome> populationList;
         ArrayList<Chromosome> parentList;
         ArrayList<Chromosome> childList;
@@ -73,21 +76,21 @@ public class Program {
 
             while (epoch < MAX_EPOCH) {
 
-                parentList = randomSelectParent(populationList);
-                // parentList = ratingSelectParent(populationList);
-                // parentList = cuttingSelectParent(populationList);
+                // parentList = randomSelectParent(populationList);
+                parentList = ratingSelectParent(populationList);
+                //parentList = cuttingSelectParent(populationList);
 
                 Collections.shuffle(parentList);
 
-                childList = onePointCrossOver(parentList);
-                //childList = uniformCrossOver(parentList);
+                 childList = onePointCrossOver(parentList);
+                // childList = uniformCrossOver(parentList);
 
                 mutation(childList, P_MUTATION);
 
                 fitnessPopulation(childList);
 
-                populationList = steadyStateReplacement(populationList, childList);
-                // populationList = generationalReplacement(populationList, childList);
+                // populationList = steadyStateReplacement(populationList, childList);
+                 populationList = generationalReplacement(populationList, childList);
                 fitnessPopulation(populationList);
 
                 System.out.println("epoch " + epoch++ + " : " + " x ="
@@ -99,9 +102,11 @@ public class Program {
                     break;
                 }
             }
+
+
+            long endTime = System.currentTimeMillis();
+            System.out.println("time : " + (endTime - startTime) + " milliseconds");
         }
-
-
     }
 
 /*
