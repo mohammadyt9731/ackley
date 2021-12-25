@@ -17,7 +17,6 @@ public class Program {
 
     public static void main(String[] args) {
 
-
         ArrayList<Chromosome> populationList;
         ArrayList<Chromosome> parentList;
         ArrayList<Chromosome> childList;
@@ -25,11 +24,12 @@ public class Program {
 
 
         populationList = initPopulation(POPULATION_SIZE);
-        //  printPopulation(populationList);
-
         fitnessPopulation(populationList);
 
         /*
+
+        //  printPopulation(populationList);
+
         printFitness(populationList);
 
         parentList = randomSelectParent(populationList);
@@ -66,18 +66,11 @@ public class Program {
 
 */
 
-
-
-
-
-
-
-
         if (populationList.get(0).getFitness() == 0) {
-            System.out.println("found answer in epoch " + (epoch ));
             System.out.println("epoch " + epoch + " : " + " x ="
                     + populationList.get(0).getX() + " y " + populationList.get(0).getY());
-        }
+            System.out.println("found answer in epoch " + (epoch ));
+            }
         else {
 
             while (epoch < MAX_EPOCH) {
@@ -95,7 +88,7 @@ public class Program {
 
                 fitnessPopulation(childList);
 
-                 populationList = steadyPopulation(populationList, childList);
+                 populationList = steadyStateReplacement(populationList, childList);
                 // populationList = generationalReplacement(populationList, childList);
                 fitnessPopulation(populationList);
 
@@ -105,8 +98,6 @@ public class Program {
 
                 if (populationList.get(0).getFitness() == 0) {
                     System.out.println("found answer in epoch " + (epoch - 1));
-                    System.out.println("epoch " + epoch + " : " + " x ="
-                            + populationList.get(0).getX() + " y " + populationList.get(0).getY());
                     break;
                 }
             }
@@ -115,7 +106,7 @@ public class Program {
 
     }
 
-
+/*
     public static void printPopulation(ArrayList<Chromosome> population) {
 
         for (Chromosome chromosome : population) {
@@ -134,6 +125,7 @@ public class Program {
         System.out.println("***************************************");
 
     }
+*/
 
     public static int generateRandomNumber(int modular) {
 
@@ -211,7 +203,6 @@ public class Program {
     }
 
     public static ArrayList<Chromosome> ratingSelectParent(ArrayList<Chromosome> populationList) {
-
 
         ArrayList<Chromosome> ratingParentLIst = new ArrayList<>();
 
@@ -338,7 +329,7 @@ public class Program {
 
         for (Chromosome chromosome : childList) {
 
-            float randomProb = random.nextFloat() % 1;
+            float randomProb = random.nextFloat();
             if (randomProb < 0)
                 randomProb *= -1;
 
@@ -370,7 +361,7 @@ public class Program {
 
     /////////////////////////////////////////////////////////////////////////
 
-    public static ArrayList<Chromosome> steadyPopulation(ArrayList<Chromosome> parentList, ArrayList<Chromosome> childList) {
+    public static ArrayList<Chromosome> steadyStateReplacement(ArrayList<Chromosome> parentList, ArrayList<Chromosome> childList) {
 
 
         ArrayList<Chromosome> newPopulation = new ArrayList<>();
