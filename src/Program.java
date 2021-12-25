@@ -22,7 +22,6 @@ public class Program {
         ArrayList<Chromosome> childList;
 
 
-
         populationList = initPopulation(POPULATION_SIZE);
         fitnessPopulation(populationList);
 
@@ -69,13 +68,12 @@ public class Program {
         if (populationList.get(0).getFitness() == 0) {
             System.out.println("epoch " + epoch + " : " + " x ="
                     + populationList.get(0).getX() + " y " + populationList.get(0).getY());
-            System.out.println("found answer in epoch " + (epoch ));
-            }
-        else {
+            System.out.println("found answer in epoch " + (epoch));
+        } else {
 
             while (epoch < MAX_EPOCH) {
 
-                 parentList = randomSelectParent(populationList);
+                parentList = randomSelectParent(populationList);
                 // parentList = ratingSelectParent(populationList);
                 // parentList = cuttingSelectParent(populationList);
 
@@ -88,7 +86,7 @@ public class Program {
 
                 fitnessPopulation(childList);
 
-                 populationList = steadyStateReplacement(populationList, childList);
+                populationList = steadyStateReplacement(populationList, childList);
                 // populationList = generationalReplacement(populationList, childList);
                 fitnessPopulation(populationList);
 
@@ -338,7 +336,7 @@ public class Program {
 
 
                 int randomGeneIndex = generateRandomNumber(2);
-                float randomValue = (float) (Math.round((random.nextFloat() * 60 - 30)*1000d)/1000d);
+                float randomValue = (float) (Math.round((random.nextFloat() * 60 - 30) * 1000d) / 1000d);
 
 
                 if (randomGeneIndex == 0) {
@@ -394,7 +392,7 @@ public class Program {
 
 
         fitnessPopulation(parentList);
-        int parentSelectedSize =  (POPULATION_SIZE - PARENT_LIST_SIZE);
+        int parentSelectedSize = (POPULATION_SIZE - PARENT_LIST_SIZE);
         for (int i = 0; i < parentSelectedSize; i++)
             newPopulation.add(parentList.get(i));
 
